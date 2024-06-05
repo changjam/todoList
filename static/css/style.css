@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&family=RocknRoll+One&display=swap');
+
+*{
+    font-family: 'RocknRoll One', 'Noto Sans TC', sans-serif;
+    padding: 0;
+    margin: 0;
+    --main-color: #239f95;
+    --secondary-color: #f5f4e8;
+    --secondary-color-opacity: rgba(245, 244, 232, 0.8);
+    --emphasis-color: #414141;
+    --green: rgb(232, 239, 181);
+    --green-opacity: rgba(232, 239, 181, 0.7);
+    --orange: #ffbc5f;
+    --orange-light: #fac587;
+    --orange-dark: #c17926;
+    --orange-opacity: rgba(250, 188, 116, 0.6);
+    --blue-light: #a2cffe;
+    --red: rgb(246, 152, 152);
+    --red-dark: rgb(227, 71, 71);
+    --red-light: rgb(250, 220, 220);;
+    --purple: rgb(234 210 255);
+
+    --shadow1: 3px 0 5px 0 rgba(33, 20, 20, 0.14);
+    --shadow2: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    --shadow3: var(--dark-gray) 2px 2px 2px;
+
+    --font-size0: 14px;
+    --font-size1: 16px;
+    --font-size2: 20px;
+    --font-size3: 24px;
+    --font-size4: 32px;
+
+    --radius1: 5px;
+    --radius2: 10px;
+    --radius3: 15px;
+    --radius4: 20px;
+    --radius5: 30px;
+}
+
+.high_tag{background: var(--red-dark);}
+.medium_tag{background: var(--red);}
+.low_tag{background: var(--red-light);}
+
+.active{background: var(--orange) !important;}
+
+body{   
+    color: var(--emphasis-color);
+    background: var(--main-color);
+    box-sizing: border-box;
+    width: 100%;
+
+}
+.container{
+    max-width: 1024px;
+    min-height: 100vh;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.container Header{
+    width: 100%;
+    height: 220px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+Header .title_container{
+    background: var(--secondary-color);
+    text-shadow: var(--shadow3);
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: var(--font-size3);
+    border: 2px solid var(--emphasis-color);
+    border-radius: 50% 5px 50% 5px;
+}
+Header .input_tags_container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+Header .input_tags_container .tags_button_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+Header .input_tags_container .tags_button_container .tag{
+    margin: 4px;
+    width: 110px;
+    line-height: 34px;
+    border: 2px solid var(--emphasis-color);
+    border-radius: var(--radius2);
+    background-color: var(--green-opacity);
+    color: var(--emphasis-color);
+    font-size: var(--font-size2);
+}
+Header .input_tags_container .tags_button_container .tag:hover{
+    cursor: pointer;
+}
+
+
+Header .input_task_container{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+Header .input_task_container .input_task{
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--emphasis-color);
+    background-color: var(--main-color);
+    color: var(--secondary-color) !important;
+    width: 300px;
+    height: 100%;
+    padding: 0 10px;
+    font-size: var(--font-size2);
+    margin-right: 4px;
+}
+.input_task::placeholder {
+    color: var(--secondary-color-opacity);
+    opacity: 1; /* Firefox */
+}
+.input_task::-ms-input-placeholder { /* Edge 12 -18 */
+    color: var(--secondary-color-opacity);
+}
+header .input_task_container .add_task_button{
+    width: 50px;
+    height: 30px;
+    border-radius: var(--radius1);
+    background-color: var(--emphasis-color);
+    color: var(--secondary-color);
+    outline: none;
+}
+header .input_task_container .add_task_button:hover{
+    cursor: pointer;
+}
+
+
+
+
+main {
+    width: 100%;
+    height: 500px;
+
+    margin-top: 60px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 3px solid var(--emphasis-color);
+    border-radius: var(--radius2);
+    background-color: var(--secondary-color);
+    box-shadow: var(--shadow1);
+}
+main .task_container{
+    width: 80%;
+    height: 100%;
+    overflow-y: scroll;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Scrollbar Setting */
+main .task_container::-webkit-scrollbar {
+    width: 8px;
+}
+main .task_container::-webkit-scrollbar-track {
+    background: var(--green);
+}
+main .task_container::-webkit-scrollbar-thumb {
+    background-color: var(--orange);
+}
+
+main .task_container .task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    width: 98%;
+    line-height: 70px;
+
+    box-sizing: border-box;
+    border-radius: var(--radius3);
+    margin: 10px 0;
+}
+main .task_container .task:nth-child(even){
+    background-color: var(--orange-light);
+}
+main .task_container .task:nth-child(odd){
+    background-color: var(--blue-light);
+}
+
+main .task_container .task .important_mark{
+    width: 160px;
+    line-height: 40px;
+
+    border-radius: var(--radius4);
+    font-weight: 600;
+    text-shadow: var(--secondary-color) 1px 1px 1px;
+    
+    text-align: center;
+    margin: 0 10px;
+}   
+main .task_container .task .task_title{
+    width: 100%;
+    margin-left: 20px;
+    font-size: var(--font-size2);
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+main .task_container .task .is_finish_tags{
+    width: 140px;
+    background-color: var(--purple);
+    text-align: center;
+}
+
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    line-height: 40px;
+    text-align: center;
+}
