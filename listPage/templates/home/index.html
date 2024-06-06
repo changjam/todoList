@@ -15,8 +15,8 @@
             <div class="input_tags_container">
                 <div class="tags_button_container">
                     <button class="tag">High</button>
-                    <button class="tag active">Medium</button>
-                    <button class="tag">Low</button>
+                    <button class="tag">Medium</button>
+                    <button class="tag active">Low</button>
                 </div>
             </div>
             <div class="input_task_container">
@@ -26,41 +26,13 @@
         </Header>
         <main>
             <div class="task_container">
-                <div class="task">
-                    <div class="important_mark high_tag">High</div>
-                    <div class="task_title">Finish Django Project</div>
-                    <div class="is_finish_tags">Not Done</div>
-                </div>
-                <div class="task">
-                    <div class="important_mark low_tag">Low</div>
-                    <div class="task_title">學習Vue.js</div>
-                    <div class="is_finish_tags">Not Done</div>
-                </div>
-                <div class="task">
-                    <div class="important_mark medium_tag">Medium</div>
-                    <div class="task_title">完成AI作業</div>
-                    <div class="is_finish_tags">Not Done</div>
-                </div>
-                <div class="task">
-                    <div class="important_mark medium_tag">Medium</div>
-                    <div class="task_title">讓你的字超出去的時候可以使用 他會變成...的樣子7777777777777777777</div>
-                    <div class="is_finish_tags">Not Done</div>
-                </div>
-                <div class="task">
-                    <div class="important_mark low_tag">Low</div>
-                    <div class="task_title">學習Vue.js</div>
-                    <div class="is_finish_tags">Not Done</div>
-                </div>
-                <div class="task">
-                    <div class="important_mark medium_tag">Medium</div>
-                    <div class="task_title">完成AI作業</div>
-                    <div class="is_finish_tags">Not Done</div>
-                </div>
-                <div class="task">
-                    <div class="important_mark medium_tag">Medium</div>
-                    <div class="task_title">讓你的字超出去的時候可以使用 他會變成...的樣子7777777777777777777</div>
-                    <div class="is_finish_tags">Not Done</div>
-                </div>
+                {% for task in task_list %}
+                    <div class="task {{ task.get_priority_display }}">
+                        <div class="important_mark {{ task.get_priority_display }}">{{ task.get_priority_display }}</div>
+                        <div class="task_title">{{ task.title }}</div>
+                        <div class="is_finish_tags {{ task.get_status_display }}">{{ task.get_status_display }}</div>
+                    </div>
+                {% endfor %}
             </div>
         </main>
         <footer>
