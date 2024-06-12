@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <div class="container">
@@ -13,15 +14,15 @@
                 <h1>Todo List</h1>
             </div>
             <div class="input_tags_container">
-                <div class="tags_button_container">
+                <div id="tags_button_container" class="tags_button_container">
                     <button class="tag">High</button>
                     <button class="tag">Medium</button>
                     <button class="tag active">Low</button>
                 </div>
             </div>
             <div class="input_task_container">
-                <input class="input_task" type="text" placeholder="Add a task...">
-                <button class="add_task_button">Add</button>
+                <input id="input_task" class="input_task" type="text" placeholder="Add a task...">
+                <button id="add_task_button" class="add_task_button">Add</button>
             </div>
         </Header>
         <main>
@@ -39,5 +40,6 @@
             <p>Created by Jam</p>
         </footer>
     </div>
+    <script type="module" src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

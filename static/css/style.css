@@ -194,7 +194,6 @@ main .task_container::-webkit-scrollbar-thumb {
 
 main .task_container .task{
     display: flex;
-    justify-content: space-between;
     align-items: center;
     
     width: 100%;

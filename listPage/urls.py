@@ -17,7 +17,9 @@ Including another URLconf
 
 from django.urls import path
 from listPage import views
+from listPage import api
 
 urlpatterns = [
     path('', views.listPage, name='listPage'),
+    path('task/', api.save_task, name='save_task')
 ]
