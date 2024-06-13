@@ -12,9 +12,9 @@ class Task(models.Model):
     ]
 
     status = [
-        (1, 'Pending'),
-        (2, 'Doing'),
-        (3, 'Done')
+        (1, 'Done'),
+        (2, 'Pending'),
+        (3, 'Doing')
     ]
 
     title = models.CharField(max_length=200)

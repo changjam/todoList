@@ -21,5 +21,6 @@ from listPage import api
 
 urlpatterns = [
     path('', views.listPage, name='listPage'),
-    path('task/', api.save_task, name='save_task')
+    path('api/task/', api.save_task, name='save_task'),
+    path('api/data/', api.get_data, name='get_data')
 ]

@@ -177,6 +177,9 @@ main {
 main .task_container{
     width: 90%;
     height: 100%;
+
+    margin-top: 20px;
+    
     overflow-y: scroll;
     box-sizing: border-box;
 
@@ -205,6 +208,7 @@ main .task_container .task{
 }
 
 main .task_container .task .important_mark{
+    position: relative;
     width: 160px;
     line-height: 40px;
 
@@ -214,7 +218,16 @@ main .task_container .task .important_mark{
     
     text-align: center;
     margin: 0 10px;
-}   
+
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;
+    user-select: none;
+}
+main .task_container .task .important_mark:hover{
+    cursor: pointer;
+}
+
 main .task_container .task .task_title{
     width: 100%;
     margin-left: 20px;
@@ -234,6 +247,14 @@ main .task_container .task .is_finish_tags{
     
     text-align: center;
     margin: 0 10px;
+
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;
+    user-select: none;
+}
+main .task_container .task .is_finish_tags:hover{
+    cursor: pointer;
 }
 
 

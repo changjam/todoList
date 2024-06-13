@@ -26,15 +26,7 @@
             </div>
         </Header>
         <main>
-            <div class="task_container">
-                {% for task in task_list %}
-                    <div class="task {{ task.get_priority_display }}">
-                        <div class="important_mark {{ task.get_priority_display }}">{{ task.get_priority_display }}</div>
-                        <div class="task_title">{{ task.title }}</div>
-                        <div class="is_finish_tags {{ task.get_status_display }}">{{ task.get_status_display }}</div>
-                    </div>
-                {% endfor %}
-            </div>
+            <div id="task_container" class="task_container"></div>
         </main>
         <footer>
             <p>Created by Jam</p>

@@ -21,3 +21,9 @@ def save_task(request):
         return JsonResponse({'result': 'Task saved successfully.'})
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
+
+@csrf_exempt
+def get_data(request):
+    task_list = Task.objects.values()
+    return JsonResponse({"result": list(task_list)})

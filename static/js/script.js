@@ -1,8 +1,18 @@
-import { clear_button_active, get_active_tags } from './tools/input_tags.js' 
+import { clear_button_active, get_active_tags, get_next_tags } from './tools/priority_tags.js' 
+import { get_next_status } from './tools/status.js';
+import { get_data, render_todo_list } from './tools/data.js';
 
-window.onload = () => {
+window.onload = async () => {
+    const data = await get_data();
+    render_todo_list(data["result"]);
+
+    // input event
     tags_button_click_EventListener();
     add_task_button_click_EventListener();
+
+    // click to change 
+    change_priority_EventListener(data["result"]);
+    change_status_EventListener(data["result"]);
 };
 
 
@@ -22,7 +32,7 @@ function add_task_button_click_EventListener(){
             return;
         const active_tag_value = get_active_tags("tag");
 
-        const response = await fetch("task/", {
+        const response = await fetch("api/task/", {
             method: "POST",
             headers: new Headers({
                 "Content-Type": "application/json"
@@ -34,6 +44,40 @@ function add_task_button_click_EventListener(){
         });
         const data = await response.json();
         location.reload();
-        console.log(data);
+    });
+}
+
+function change_priority_EventListener(result_list){
+    document.querySelectorAll(".important_mark").forEach(element => {
+        element.addEventListener("click", (e) => {
+            let priority_name = e.target.classList[1];
+            let next_priority_name = get_next_tags(priority_name);
+
+            e.target.classList.remove(priority_name);
+            e.target.classList.add(next_priority_name);
+            e.target.innerText = next_priority_name;
+
+            e.target.parentElement.classList.remove(priority_name);
+            e.target.parentElement.classList.add(next_priority_name);
+
+            // result_list.forEach(task => {
+            //     if (task.id !== parseInt(e.target.parentElement.getAttribute("tid"))) {
+                    
+            //     };
+            // });
+        });
+    });
+}
+
+function change_status_EventListener(){
+    document.querySelectorAll(".is_finish_tags").forEach(element => {
+        element.addEventListener("click", (e) => {
+            let status = e.target.classList[1];
+            let next_status = get_next_status(status);
+
+            e.target.classList.remove(status);
+            e.target.classList.add(next_status);
+            e.target.innerText = next_status;
+        });
     });
 }
