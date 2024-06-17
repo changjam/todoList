@@ -4,17 +4,20 @@ import { get_data, render_todo_list, show_save_button, get_next_idx } from './to
 
 window.onload = async () => {
     const data = await get_data();
-    render_todo_list(data["result"]);
+    init(data["result"], data["result"]);
 
     // input event
     tags_button_click_EventListener();
     add_task_button_click_EventListener();
-
-    // click to change 
-    change_priority_EventListener(data["result"]);
-    change_status_EventListener(data["result"]);
 };
 
+function init(origin_data_list, current_data_list){
+    render_todo_list(current_data_list);
+
+    // click to change 
+    change_priority_EventListener(origin_data_list, current_data_list);
+    change_status_EventListener(origin_data_list, current_data_list);
+}
 
 function tags_button_click_EventListener(){
     document.getElementById("tags_button_container").addEventListener("click", (e) => {
@@ -47,37 +50,34 @@ function add_task_button_click_EventListener(){
     });
 }
 
-function change_priority_EventListener(result_list){
+function change_priority_EventListener(origin_data_list, current_data_list){
     document.querySelectorAll(".important_mark").forEach(element => {
         element.addEventListener("click", (e) => {
-            let priority_name = e.target.classList[1];
-            let next_priority_name = get_next_tags(priority_name);
+            const taskId = parseInt(e.target.parentElement.getAttribute("tid"));
+            let new_data_list = current_data_list.map(task => 
+                task.id === taskId 
+                    ? { ...task, priority: get_next_idx(task.priority) }
+                    : task
+            );
 
-            e.target.classList.remove(priority_name);
-            e.target.classList.add(next_priority_name);
-            e.target.innerText = next_priority_name;
-
-            e.target.parentElement.classList.remove(priority_name);
-            e.target.parentElement.classList.add(next_priority_name);
-
-            // result_list.forEach(task => {
-            //     if (task.id !== parseInt(e.target.parentElement.getAttribute("tid"))) {
-                    
-            //     };
-            // });
+            show_save_button(origin_data_list, new_data_list);
+            init(origin_data_list, new_data_list);
         });
     });
 }
 
-function change_status_EventListener(){
+function change_status_EventListener(origin_data_list, current_data_list){
     document.querySelectorAll(".is_finish_tags").forEach(element => {
         element.addEventListener("click", (e) => {
-            let status = e.target.classList[1];
-            let next_status = get_next_status(status);
+            const taskId = parseInt(e.target.parentElement.getAttribute("tid"));
+            let new_data_list = current_data_list.map(task => 
+                task.id === taskId 
+                    ? { ...task, status: get_next_idx(task.status) }
+                    : task
+            );
 
-            e.target.classList.remove(status);
-            e.target.classList.add(next_status);
-            e.target.innerText = next_status;
+            show_save_button(origin_data_list, new_data_list);
+            init(origin_data_list, new_data_list);
         });
     });
 }

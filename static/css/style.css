@@ -56,6 +56,21 @@
 .Doing{background: var(--red-dark);}
 
 .active{background: var(--orange) !important;}
+.display_none{display: none;}
+
+.remove{
+position: relative;
+}
+.remove::after{
+    content: "";
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    width: 100%;
+    height: 1px;
+}
 
 
 body{   
@@ -257,6 +272,25 @@ main .task_container .task .is_finish_tags:hover{
     cursor: pointer;
 }
 
+main .save_btn_container {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+main .save_btn_container .save_button{
+    width: 200px;
+    padding: 5px 20px;
+    font-size: var(--font-size3);
+    background-color: var(--orange);
+
+    border: 2px solid var(--emphasis-color);
+    border-radius: var(--radius1);
+}
+main .save_btn_container .save_button:hover{
+    cursor: pointer;
+}
 
 footer{
     position: absolute;

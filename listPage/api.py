@@ -5,8 +5,12 @@ from .models import Task
 from .forms import TaskForm
 
 @csrf_exempt
-def save_task(request):
-    if request.method == 'POST':
+def task(request):
+    if request.method == 'GET':
+        task_list = Task.objects.values()
+        return JsonResponse({"result": list(task_list)})
+    
+    elif request.method == 'POST':
         try:
             body = json.loads(request.body.decode('utf-8'))
         except json.JSONDecodeError:
@@ -19,11 +23,6 @@ def save_task(request):
         task = Task(title = form.cleaned_data['title'], priority = form.cleaned_data['priority'])
         task.save()
         return JsonResponse({'result': 'Task saved successfully.'})
+    
     else:
         return JsonResponse({'error': 'Invalid request method.'}, status=405)
-
-
-@csrf_exempt
-def get_data(request):
-    task_list = Task.objects.values()
-    return JsonResponse({"result": list(task_list)})
