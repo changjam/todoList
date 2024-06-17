@@ -1,6 +1,6 @@
-import { clear_button_active, get_active_tags, get_next_tags } from './tools/priority_tags.js' 
-import { get_next_status } from './tools/status.js';
-import { get_data, render_todo_list } from './tools/data.js';
+import { clear_button_active, get_active_tags, get_priority_tags } from './tools/priority_tags.js' 
+import { get_status_tags } from './tools/status.js';
+import { get_data, render_todo_list, show_save_button, get_next_idx } from './tools/data.js';
 
 window.onload = async () => {
     const data = await get_data();

@@ -30,3 +30,9 @@ export async function render_todo_list(data_list){
     });
     document.getElementById("task_container").innerHTML = render_str;
 }
+export function get_next_idx(idx, lower_limit = 1, upper_limit = 3){
+    let next_idx = idx + 1;
+    if(next_idx > upper_limit)
+        next_idx = lower_limit;
+    return next_idx;
+}

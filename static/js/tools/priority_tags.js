@@ -29,18 +29,3 @@ export function get_priority_tags(priority_idx){
     }
     return Object.keys(priority_items)[priority_idx-1];
 }
-
-export function get_next_tags(priority){
-    const priority_items = {
-        "Low": 1,
-        "Medium": 2,
-        "High": 3,
-    }
-
-    let priority_idx = priority_items[priority];
-    let next_priority_idx = priority_idx + 1;
-    if(next_priority_idx > 3)
-        next_priority_idx = 1;
-
-    return Object.keys(priority_items)[next_priority_idx-1];
-}
