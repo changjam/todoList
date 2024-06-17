@@ -1,5 +1,4 @@
-import { clear_button_active, get_active_tags, get_priority_tags } from './tools/priority_tags.js' 
-import { get_status_tags } from './tools/status.js';
+import { clear_button_active, get_active_tags } from './tools/priority_tags.js' 
 import { get_data, render_todo_list, show_save_button, get_next_idx } from './tools/data.js';
 
 
