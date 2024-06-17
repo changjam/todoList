@@ -2,6 +2,11 @@ import { clear_button_active, get_active_tags, get_priority_tags } from './tools
 import { get_status_tags } from './tools/status.js';
 import { get_data, render_todo_list, show_save_button, get_next_idx } from './tools/data.js';
 
+
+
+
+var current_data = [];
+
 window.onload = async () => {
     const data = await get_data();
     init(data["result"], data["result"]);
@@ -9,9 +14,11 @@ window.onload = async () => {
     // input event
     tags_button_click_EventListener();
     add_task_button_click_EventListener();
+    update_task_button_click_EventListener();
 };
 
 function init(origin_data_list, current_data_list){
+    current_data = current_data_list;
     render_todo_list(current_data_list);
 
     // click to change 
@@ -44,6 +51,20 @@ function add_task_button_click_EventListener(){
                 "title": input_task,
                 "priority": active_tag_value
             })
+        });
+        const data = await response.json();
+        location.reload();
+    });
+}
+
+function update_task_button_click_EventListener(){
+    document.getElementById("save_button").addEventListener("click", async (e) => {
+        const response = await fetch("api/task/", {
+            method: "PUT",
+            headers: new Headers({
+                "Content-Type": "application/json"
+            }),
+            body: JSON.stringify(current_data)
         });
         const data = await response.json();
         location.reload();
