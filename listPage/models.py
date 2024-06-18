@@ -19,7 +19,7 @@ class Task(models.Model):
 
     title = models.CharField(max_length=200)
     priority = models.IntegerField(verbose_name="優先度", choices=priority, default=1)
-    status = models.IntegerField(verbose_name="狀態", choices=status, default=1)
+    status = models.IntegerField(verbose_name="狀態", choices=status, default=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

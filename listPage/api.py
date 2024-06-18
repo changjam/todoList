@@ -5,7 +5,7 @@ from .models import Task
 from .forms import TaskForm
 
 @csrf_exempt
-def task(request, task_id=None):
+def task(request):
     if request.method == 'GET':
         task_list = Task.objects.values()
         return JsonResponse({"result": list(task_list)})
@@ -40,6 +40,7 @@ def task(request, task_id=None):
 
             try:
                 task = Task.objects.get(id=tid)
+                print(task)
             except Task.DoesNotExist:
                 return JsonResponse({'error': f'Task with id {tid} does not exist.'}, status=404)
 
@@ -57,8 +58,17 @@ def task(request, task_id=None):
 
         return JsonResponse({'result': 'Task updated successfully.'})
 
-    elif request.method == 'DELETE' and task_id is not None:
+    elif request.method == 'DELETE':
         try:
+            try:
+                task_data = json.loads(request.body.decode('utf-8'))
+            except json.JSONDecodeError:
+                return JsonResponse({'error': 'Invalid JSON.'}, status=400)
+            
+            task_id  = task_data.get('task_id', None)
+            if task_id is None:
+                return JsonResponse({'error': 'Missing task id in task_data.'}, status=400)
+            
             task = Task.objects.get(id=task_id)
         except Task.DoesNotExist:
             return JsonResponse({'error': 'Task not found.'}, status=404)

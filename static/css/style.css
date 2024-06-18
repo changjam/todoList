@@ -210,6 +210,13 @@ main .task_container::-webkit-scrollbar-thumb {
     background-color: var(--orange);
 }
 
+main .task_container .no_task_message{
+    font-size: var(--font-size4);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
 main .task_container .task{
     display: flex;
     align-items: center;
@@ -221,7 +228,28 @@ main .task_container .task{
     border-radius: var(--radius1);
     margin: 10px 0;
 }
+main .task_container .task .remove_task_button{
 
+    background-color: var(--red-dark);
+    color: white;
+    
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    align-self: center;
+    
+    padding: 6px;
+    line-height: 100%;
+    margin-left: 4px;
+
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;
+    user-select: none;
+}
+.remove_task_button:hover{
+    cursor: pointer;
+}
 main .task_container .task .important_mark{
     position: relative;
     width: 160px;

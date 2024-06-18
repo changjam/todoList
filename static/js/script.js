@@ -1,6 +1,6 @@
 import { clear_button_active, get_active_tags } from './tools/priority_tags.js' 
 import { get_data, render_todo_list, show_save_button, get_next_idx } from './tools/data.js';
-
+import { get_current_time } from './tools/time.js';
 
 
 
@@ -14,6 +14,7 @@ window.onload = async () => {
     tags_button_click_EventListener();
     add_task_button_click_EventListener();
     update_task_button_click_EventListener();
+    remove_task_button_click_EventListener();
 };
 
 function init(origin_data_list, current_data_list){
@@ -48,11 +49,15 @@ function add_task_button_click_EventListener(){
             }),
             body: JSON.stringify({
                 "title": input_task,
-                "priority": active_tag_value
+                "priority": active_tag_value,
+                "status": 2, // pending
+                "created_at": get_current_time(),
+                "updated_at": get_current_time()
             })
         });
         const data = await response.json();
         location.reload();
+        console.log(data);
     });
 }
 
@@ -67,6 +72,21 @@ function update_task_button_click_EventListener(){
         });
         const data = await response.json();
         location.reload();
+        console.log(data);
+    });
+}
+
+function remove_task_button_click_EventListener(){
+    document.querySelectorAll(".remove_task_button").forEach(element => {
+        element.addEventListener("click", async (e) => {
+            const taskId = parseInt(e.target.parentElement.getAttribute("tid"));
+            const response = await fetch(`api/task/`, {
+                method: "DELETE",
+                body: JSON.stringify({"task_id": taskId})
+            });
+            location.reload();
+            console.log(response);
+        });
     });
 }
 

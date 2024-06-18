@@ -19,18 +19,25 @@ export async function get_data() {
 
 export async function render_todo_list(data_list){
     let render_str = "";
-    data_list.forEach((d)=>{
-        const _priority_name = get_priority_tags(d.priority);
-        const _status_name = get_status_tags(d.status);
-        const _add_remove_style = d.status === 1 ? "remove" : "";
-        render_str += `
-            <div class="task ${_priority_name}" tid="${d.id}">
-                <div class="important_mark ${_priority_name}">${_priority_name}</div>
-                <div class="task_title ${_add_remove_style}">${d.title}</div>
-                <div class="is_finish_tags ${_status_name}">${_status_name}</div>
-            </div>
-            `
-    });
+    console.log(data_list)
+    if (data_list.length === 0){
+        render_str = "<div class=\"no_task_message\">No task to display</div>";
+    }else{
+        data_list.forEach((d)=>{
+            const _priority_name = get_priority_tags(d.priority);
+            const _status_name = get_status_tags(d.status);
+            const _add_remove_style = d.status === 1 ? "remove" : "";
+            render_str += `
+                <div class="task ${_priority_name}" tid="${d.id}">
+                    <div class="remove_task_button">X</div>
+                    <div class="important_mark ${_priority_name}">${_priority_name}</div>
+                    <div class="task_title ${_add_remove_style}">${d.title}</div>
+                    <div class="is_finish_tags ${_status_name}">${_status_name}</div>
+                </div>
+                `
+        });
+    }
+
     document.getElementById("task_container").innerHTML = render_str;
 }
 
